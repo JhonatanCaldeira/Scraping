@@ -1,7 +1,6 @@
 import scrapy
 from scrapy import Request
 from simplon_scrapy.items import Quotes
-from scrapy.loader import ItemLoader
 
 class QuotesSpider(scrapy.Spider):
     name = "quotes"
