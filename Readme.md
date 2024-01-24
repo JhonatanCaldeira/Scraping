@@ -14,8 +14,12 @@ Ce projet propose une base pour la collecte de données sur les sites publics. D
 
 ```pip install -r requirements.txt```
 
-## Fichiers de configuration
-Vous devez modifier le fichier de configuration situé dans __.env__ avec les informations de votre base de données et de votre serveur typesense.
+## Base des données
+Vous devez modifier le fichier de configuration situé dans __simplon_scarpy/simplon_scrapy/settings.py__ avec les informations de votre base de données Mongo.
+
+### MONGODB Settings
+MONGO_URI = "localhost:27017"
+MONGO_DATABASE = "scrapping-database"
 
 ## Script d'Initialisation
 Le script __search_engine_init.py__ joue un rôle crucial en initialisant le moteur de recherche avec des données pertinentes. Il exporte les données de MySQL, les convertit au format JSONL, et les importe dans Typesense.
@@ -27,18 +31,13 @@ Pour lancer le server flask, il faut entrer la ligne de commande ci-dessous dans
 ```sh
 flask --app server.py --debug run
 ```
-Le server flask permet de configurer des routes (url) qui vont être utilisée:
+Le server flask permet de:
 
-* soit pour charger une table,
-exemple: 
-Pour charger la table food on va taper:
-http://localhost:5000/9moisacroquer/UpdateCollection?table_name=food
+* scraper les données dans sa base:
+http://localhost:5000/api/run-spider
 
-* soit pour effectuer une recherche:
-exemple:
-on entre dans la barre de recherche les termes à rechercher et le serveur va faire plusieurs requêtes dans les tables, préalablement chargées, à l'adresse suivante:
-http://localhost:5000/9moisacroquer/SearchCollection
-si les termes sont: carences en fer, il va rechercher tous les textes contenant "fer", "carences" et "carences fer".
+* récupérer une citation:
+http://127.0.0.1:5000/api/random_quote
 
 
 ## Tests

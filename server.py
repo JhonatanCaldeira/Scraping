@@ -1,10 +1,6 @@
-import crochet
-crochet.setup()
-
 from flask import Flask, request
-import json
 from pymongo import MongoClient
-import subprocess, os
+import subprocess, os, json
 
 app = Flask(__name__)
 
@@ -24,8 +20,8 @@ def get_one_quote():
 
     return_quote = []
     for document in random_document:
-        return_quote.append(document["Quote"])
-        return_quote.append(document["Author"])
+        return_quote.append(document["quote"])
+        return_quote.append(document["author"])
         
     return json.dumps(return_quote)
 
