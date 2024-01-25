@@ -40,11 +40,10 @@ http://localhost:5000/api/run-spider
 http://127.0.0.1:5000/api/random_quote
 
 
-## Tests
-Pour exécuter les tests :
-
-```py
-python tests/test.py
+## Streamlit
+Vous pouvez visualizer les données à partir d'une page Streamlit:
+```sh
+streamlit run main.py
 ```
 
 ## Contribution
