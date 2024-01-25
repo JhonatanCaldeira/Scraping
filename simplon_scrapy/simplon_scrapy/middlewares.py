@@ -9,7 +9,9 @@ from scrapy import signals
 from itemadapter import is_item, ItemAdapter
 
 import pymongo
+import datetime
 from simplon_scrapy.items import LogError
+from simplon_scrapy.settings import MONGO_DATABASE, MONGO_URI, SPIDERS_TABLE_LOG
 
 
 class SimplonScrapySpiderMiddleware:
@@ -65,9 +67,9 @@ class SimplonScrapyDownloaderMiddleware:
     # passed objects.
 
     def __init__(self):
-        self.mongo_uri = "localhost:27017"
-        self.mongo_db = "scrapping-database"
-        self.collection_name = "scrapy_log"
+        self.mongo_uri = MONGO_URI
+        self.mongo_db = MONGO_DATABASE
+        self.collection_name = SPIDERS_TABLE_LOG
 
     @classmethod
     def from_crawler(cls, crawler):
@@ -95,11 +97,15 @@ class SimplonScrapyDownloaderMiddleware:
             log_item["status"] = response.status
             log_item["text"] = response.text
             log_item["url_request"] = request.url
+            log_item["created_at"] = datetime.datetime.now(tz=datetime.timezone.utc)
+            
             
             client = pymongo.MongoClient(self.mongo_uri)
             db = client[self.mongo_db]
-
-            db[self.collection_name].insert_one(ItemAdapter(log_item).asdict())
+            try:
+                db[self.collection_name].insert_one(ItemAdapter(log_item).asdict())
+            finally:
+                client.close()
 
         # Must either;
         # - return a Response object

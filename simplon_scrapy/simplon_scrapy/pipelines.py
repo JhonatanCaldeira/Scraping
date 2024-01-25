@@ -6,6 +6,7 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
+from simplon_scrapy.settings import SPIDERS_TABLE_QUOTE
 import pymongo
 
 class SimplonScrapyPipeline:
@@ -13,7 +14,7 @@ class SimplonScrapyPipeline:
         return item
 
 class MongoPipeline:
-    collection_name = "scrapy_quotes"
+    collection_name = SPIDERS_TABLE_QUOTE
 
     def __init__(self, mongo_uri, mongo_db):
         self.mongo_uri = mongo_uri

@@ -1,6 +1,9 @@
 from flask import Flask, request
-from pymongo import MongoClient
-import subprocess, os, json
+import pymongo
+import subprocess
+import os
+import json
+from simplon_scrapy.simplon_scrapy import settings
 
 app = Flask(__name__)
 
@@ -9,23 +12,26 @@ def home():
     return "Server UP and Running"
 
 @app.route("/api/random_quote")
-def get_one_quote():
-    client = MongoClient()
-    db = client['scrapping-database']
-    collection = db['scrapy_quotes']
+def get_random_quote():
+    client = pymongo.MongoClient(settings.MONGO_URI)
+    db = client[settings.MONGO_DATABASE]
+    collection = db[settings.SPIDERS_TABLE_QUOTE]
+    
+    try:
+        random_document = collection.aggregate([
+            {"$sample": {"size": 1}}
+        ])
 
-    random_document = collection.aggregate([
-        {"$sample": {"size": 1}}
-    ])
+        return_quote = []
+        for document in random_document:
+            return_quote.append(document["quote"])
+            return_quote.append(document["author"])
+    finally:    
+        client.close()
 
-    return_quote = []
-    for document in random_document:
-        return_quote.append(document["quote"])
-        return_quote.append(document["author"])
-        
     return json.dumps(return_quote)
 
-@app.route('/api/run-spider')
+@app.route('/api/run_spider')
 def run_spider():
     try:
         # Exécuter la commande Scrapy

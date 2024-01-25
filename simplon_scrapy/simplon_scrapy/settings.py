@@ -95,3 +95,7 @@ FEED_EXPORT_ENCODING = "utf-8"
 # MONGODB Settings
 MONGO_URI = "localhost:27017"
 MONGO_DATABASE = "scrapping-database"
+
+#TABLES Settings
+SPIDERS_TABLE_LOG = "scrapy_log"
+SPIDERS_TABLE_QUOTE = "scrapy_quotes"

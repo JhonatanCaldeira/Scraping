@@ -20,3 +20,4 @@ class LogError(scrapy.Item):
     status = scrapy.Field()
     text = scrapy.Field()
     url_request = scrapy.Field()
+    created_at = scrapy.Field()
