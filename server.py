@@ -4,6 +4,7 @@ import subprocess
 import os
 import json
 from simplon_scrapy.simplon_scrapy import settings
+from bson.json_util import dumps, loads 
 
 app = Flask(__name__)
 
@@ -34,9 +35,22 @@ def get_random_quote():
 @app.route('/api/run_spider')
 def run_spider():
     try:
-        # Exécuter la commande Scrapy
         os.chdir('simplon_scrapy')
         subprocess.run(['scrapy', 'crawl', 'quotes'], check=True)
-        return "Spider exécuté avec succès."
+        return json.dumps("Scrapping executed successfully!")
     except subprocess.CalledProcessError:
         return "Erreur lors de l'exécution du Spider."
+
+@app.route("/api/get_log")
+def get_log():
+    client = pymongo.MongoClient(settings.MONGO_URI)
+    db = client[settings.MONGO_DATABASE]
+    collection = db[settings.SPIDERS_TABLE_LOG]
+    
+    try:
+        logs = collection.find()
+        list_logs = list(logs)
+    finally:    
+        client.close()
+
+    return dumps(list_logs)

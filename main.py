@@ -1,6 +1,4 @@
 import streamlit as st
-from pymongo import MongoClient
-import pprint
 import requests
 
 BASE_URL = "http://localhost:5000"
