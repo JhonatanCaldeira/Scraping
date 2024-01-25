@@ -99,3 +99,7 @@ MONGO_DATABASE = "scrapping-database"
 #TABLES Settings
 SPIDERS_TABLE_LOG = "scrapy_log"
 SPIDERS_TABLE_QUOTE = "scrapy_quotes"
+
+#Scrapy Log Settings
+LOG_FILE = 'spider_quotes.log'
+LOG_FILE_APPEND = True

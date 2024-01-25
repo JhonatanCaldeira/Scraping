@@ -1,14 +1,10 @@
 # Scraping with Scrapy
 ## Projet pour la collecte d’informations sur les sites publics 
 
-![Moteur de recherche](Images/engine.png)
-
-
 ## Introduction
 Ce projet propose une base pour la collecte de données sur les sites publics. Dans ce projet, nous utiliserons le site http://quotes.toscrape.com comme modèle mais la solution peut être adaptée à d’autres besoins futurs.
 
 ## Caractéristiques
-
 
 ## Python Libraries
 
@@ -22,7 +18,7 @@ MONGO_URI = "localhost:27017"
 MONGO_DATABASE = "scrapping-database"
 
 ## Script d'Initialisation
-Le script __search_engine_init.py__ joue un rôle crucial en initialisant le moteur de recherche avec des données pertinentes. Il exporte les données de MySQL, les convertit au format JSONL, et les importe dans Typesense.
+
 
 ## Flask Server
 
@@ -34,17 +30,28 @@ flask --app server.py --debug run
 Le server flask permet de:
 
 * scraper les données dans sa base:
-http://localhost:5000/api/run-spider
+http://localhost:5000/api/run_spider
 
 * récupérer une citation:
 http://127.0.0.1:5000/api/random_quote
 
+* vérifier les logs:
+http://127.0.0.1:5000/api/get_log
 
 ## Streamlit
 Vous pouvez visualizer les données à partir d'une page Streamlit:
 ```sh
 streamlit run main.py
 ```
+## Logs
+
+### Flask
+Le fichier __flask.log__ contiendra les tout les logs FLASK à niveau DEBUG.
+
+### Scrapy
+Le fichier __spider_quotes.log__ aura toutes les informations relatives aux logs de l’instance Scrapy Quotes.
+
+Pour modifier les paramètres du log vérifier les paramètres dans __settings.log__.
 
 ## Contribution
 Les fiers participants sont:
