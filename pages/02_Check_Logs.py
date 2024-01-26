@@ -14,7 +14,7 @@ send = st.button("Send Log")
 
 st.write(logs)
 
-if (send):
+if send:
     config = configparser.ConfigParser()
     config.read(Path(__file__).parent / "config.ini")
 

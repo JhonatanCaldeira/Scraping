@@ -9,9 +9,11 @@ from itemadapter import ItemAdapter
 from simplon_scrapy.settings import SPIDERS_TABLE_QUOTE
 import pymongo
 
+
 class SimplonScrapyPipeline:
     def process_item(self, item, spider):
         return item
+
 
 class MongoPipeline:
     collection_name = SPIDERS_TABLE_QUOTE
@@ -35,7 +37,7 @@ class MongoPipeline:
         self.client.close()
 
     def process_item(self, item, spider):
-        search = {'quote': item['quote'], 'author': item['author']}
+        search = {"quote": item["quote"], "author": item["author"]}
         if not self.db[self.collection_name].find_one(search):
             self.db[self.collection_name].insert_one(ItemAdapter(item).asdict())
         return item

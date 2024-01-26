@@ -97,13 +97,14 @@ class SimplonScrapyDownloaderMiddleware:
             log_item["status"] = response.status
             log_item["text"] = response.text
             log_item["url_request"] = request.url
-            log_item["created_at"] = datetime.datetime.now(tz=datetime.timezone.utc)
-            
-            
+            log_item["created_at"] = datetime.datetime.now(
+                tz=datetime.timezone.utc)
+
             client = pymongo.MongoClient(self.mongo_uri)
             db = client[self.mongo_db]
             try:
-                db[self.collection_name].insert_one(ItemAdapter(log_item).asdict())
+                db[self.collection_name].insert_one(
+                    ItemAdapter(log_item).asdict())
             finally:
                 client.close()
 

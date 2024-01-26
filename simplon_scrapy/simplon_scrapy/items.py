@@ -11,10 +11,12 @@ class SimplonScrapyItem(scrapy.Item):
     # name = scrapy.Field()
     pass
 
+
 class Quotes(scrapy.Item):
     quote = scrapy.Field()
     author = scrapy.Field()
     tags = scrapy.Field()
+
 
 class LogError(scrapy.Item):
     status = scrapy.Field()

@@ -11,7 +11,8 @@ app = Flask(__name__)
 
 format_string = "%(asctime)s:%(levelname)s:%(message)s"
 logging.basicConfig(
-    filename="flask.log", encoding="utf-8", level=logging.DEBUG, format=format_string
+    filename="flask.log", encoding="utf-8", 
+    level=logging.DEBUG, format=format_string
 )
 
 

@@ -29,3 +29,8 @@ jobs:
             
             - name: Run tests
               run: pytest ./tests/conftest.py
+
+            - name: Run linter (exemple avec flake8)
+              run: |
+                pip install flake8
+                flake8 .
