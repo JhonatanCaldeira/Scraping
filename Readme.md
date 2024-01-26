@@ -41,6 +41,22 @@ Vous pouvez visualizer les données à partir d'une page Streamlit:
 ```sh
 streamlit run main.py
 ```
+
+#### Module de Log par Mail
+Pour envoyer les logs par mail, il faudra modifier les coniguration dans le 
+fichier __pages/config.ini__
+
+```ini
+[login]
+MAIL = <user>
+KEY = <mot de passe>
+
+[server]
+host = smtp.gmail.com
+port = 587
+
+```
+
 ## Logs
 
 ### Flask
