@@ -4,7 +4,7 @@ Projet pour la collecte d’informations sur les sites publics
 ## Introduction
 Ce projet propose une base pour la collecte de données sur les sites publics. Dans ce projet, nous utiliserons le site http://quotes.toscrape.com comme modèle mais la solution peut être adaptée à d’autres besoins futurs.
 
-## Caractéristiques
+# Configurations
 
 ## Python Libraries
 
@@ -14,11 +14,9 @@ Ce projet propose une base pour la collecte de données sur les sites publics. D
 Vous devez modifier le fichier de configuration situé dans __simplon_scarpy/simplon_scrapy/settings.py__ avec les informations de votre base de données Mongo.
 
 ### MONGODB Settings
-MONGO_URI = "localhost:27017"
-MONGO_DATABASE = "scrapping-database"
+* MONGO_URI = "localhost:27017"
 
-## Script d'Initialisation
-
+* MONGO_DATABASE = "scrapping-database"
 
 ## Flask Server
 
@@ -27,16 +25,16 @@ Pour lancer le server flask, il faut entrer la ligne de commande ci-dessous dans
 ```sh
 flask --app server.py --debug run
 ```
-Le server flask permet de:
+#### Le server flask permet:
 
 * scraper les données dans sa base:
 http://localhost:5000/api/run_spider
 
 * récupérer une citation:
-http://127.0.0.1:5000/api/random_quote
+http://localhost:5000/api/random_quote
 
 * vérifier les logs:
-http://127.0.0.1:5000/api/get_log
+http://localhost:5000/api/get_log
 
 ## Streamlit
 Vous pouvez visualizer les données à partir d'une page Streamlit:
@@ -52,6 +50,14 @@ Le fichier __flask.log__ contiendra les tout les logs FLASK à niveau DEBUG.
 Le fichier __spider_quotes.log__ aura toutes les informations relatives aux logs de l’instance Scrapy Quotes.
 
 Pour modifier les paramètres du log vérifier les paramètres dans __settings.log__.
+
+## Tests
+
+Vous pouvez executer des tests avec __pytest__:
+
+```py 
+python -m pytest .\test\conftest.py
+```
 
 ## Contribution
 Les fiers participants sont:
