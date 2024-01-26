@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 import configparser
-from json2html import *
+from json2html import *  # noqa
 from pathlib import Path
 from redmail import EmailSender
 
@@ -29,5 +29,5 @@ if send:
         subject="[LOGS] Scrapy Quotes",
         sender=config["login"]["mail"],
         receivers=[to_email],
-        html=json2html.convert(json=logs),
+        html=json2html.convert(json=logs), # noqa
     )
