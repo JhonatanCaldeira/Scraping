@@ -81,7 +81,7 @@ Les fiers participants sont:
 
 Avec l'aimable participation des formateurs:
 * [Adrien Dulac](https://github.com/dtrckd)
-* [Antonys Schultz](https://github.com/DeVerMyst)
+* [Antony Schutz](https://github.com/DeVerMyst)
 
 ## Licence
 [MIT](https://choosealicense.com/licenses/mit/)
