@@ -1,5 +1,5 @@
 # Scraping with Scrapy
-## Projet pour la collecte d’informations sur les sites publics 
+Projet pour la collecte d’informations sur les sites publics 
 
 ## Introduction
 Ce projet propose une base pour la collecte de données sur les sites publics. Dans ce projet, nous utiliserons le site http://quotes.toscrape.com comme modèle mais la solution peut être adaptée à d’autres besoins futurs.
