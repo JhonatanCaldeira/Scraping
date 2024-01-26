@@ -39,5 +39,6 @@ class MongoPipeline:
     def process_item(self, item, spider):
         search = {"quote": item["quote"], "author": item["author"]}
         if not self.db[self.collection_name].find_one(search):
-            self.db[self.collection_name].insert_one(ItemAdapter(item).asdict())
+            self.db[self.collection_name].insert_one(
+                ItemAdapter(item).asdict())
         return item

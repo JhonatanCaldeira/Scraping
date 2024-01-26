@@ -6,12 +6,13 @@
 from scrapy import signals
 
 # useful for handling different item types with a single interface
-from itemadapter import is_item, ItemAdapter
+from itemadapter import ItemAdapter
 
 import pymongo
 import datetime
 from simplon_scrapy.items import LogError
-from simplon_scrapy.settings import MONGO_DATABASE, MONGO_URI, SPIDERS_TABLE_LOG
+from simplon_scrapy.settings import MONGO_DATABASE, MONGO_URI
+from simplon_scrapy.settings import SPIDERS_TABLE_LOG
 
 
 class SimplonScrapySpiderMiddleware:
